@@ -70,7 +70,18 @@ class Solution {
 <summary>Python</summary>
 
 ```python
-
+class Solution:
+    def occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]:
+        d = dict()
+        cnt = 1
+        for i in range(len(nums)):
+            if nums[i] == x:
+                d[cnt] = i
+                cnt+=1
+        ans = [0] * len(queries)
+        for i in range(len(queries)):
+            ans[i] = d.get(queries[i],-1)
+        return ans
 ```
 
 </details>
@@ -79,7 +90,31 @@ class Solution {
 <summary>Cpp</summary>
 
 ```cpp
+class Solution {
+public:
+    vector<int> occurrencesOfElement(vector<int>& nums, vector<int>& queries, int x) {
+        map<int, int> m;
 
+        int count = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == x) {
+                count++;
+                m[count] = i;
+            }
+        }
+
+        vector<int> v;
+        for (int i = 0; i < queries.size(); i++) {
+            if (queries[i] > count) {
+                v.push_back(-1);
+            }
+            else {
+                v.push_back(m[queries[i]]);
+            }
+        }
+        return v;
+    }
+};
 ```
 
 </details>
@@ -88,7 +123,28 @@ class Solution {
 <summary>Java</summary>
 
 ```java
+class Solution {
+    public List<Integer> occurrencesOfElement(List<Integer> nums, List<Integer> queries, int x) {
+        Map<Integer, Integer> m = new HashMap<>();
 
+        int count = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums.get(i) == x) {
+                count++;
+                m.put(count, i);
+            }
+        }
+
+        List<Integer> v = new ArrayList<>();
+        for (int i = 0; i < queries.size(); i++) {
+            if (queries.get(i) > count) {
+                v.add(-1);
+            } else {
+                v.add(m.get(queries.get(i)));
+            }
+        }
+        return v;
+    }
 ```
 
 </details>
@@ -122,31 +178,3 @@ class Solution {
 
 </details>
 
-## Question - 4
-
-<details>
-<summary>Python</summary>
-
-```python
-
-```
-
-</details>
-
-<details>
-<summary>Cpp</summary>
-
-```cpp
-
-```
-
-</details>
-
-<details>
-<summary>Java</summary>
-
-```java
-
-```
-
-</details>
