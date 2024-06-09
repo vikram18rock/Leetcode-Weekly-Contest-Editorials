@@ -76,15 +76,22 @@ public class ClearDigits {
 <summary>Python</summary>
 
 ```python
-def clear_digits(s):
-    res = []
-    for ch in s:
-        if ch.isdigit():
-            if res:
-                res.pop()
-        else:
-            res.append(ch)
-    return ''.join(res)
+class Solution:
+    def findWinningPlayer(self, skills, k):
+        count = 0
+        values = skills[0]
+        index = 0
+        for i in range(1, len(skills)):
+            if count == k:
+                return index
+            if values > skills[i]:
+                count += 1
+            else:
+                values = skills[i]
+                index = i
+                count = 1
+        return index
+
 
 
 ```
@@ -95,20 +102,29 @@ def clear_digits(s):
 <summary>Cpp</summary>
 
 ```cpp
-#include <string>
-using namespace std;
-
-string clearDigits(string s) {
-    string res;
-    for (char ch : s) {
-        if (isdigit(ch))
-            res.pop_back();
-        else
-            res += ch;
+class Solution {
+public:
+    int findWinningPlayer(vector<int>& skills, int k) 
+    {
+        int count=0;
+        int values=skills[0];
+        int index=0;
+        for(int i=1;i<skills.size();i++)
+        {
+            if(count==k)
+                return index;
+            if(values > skills[i])
+            count++;
+            else
+            {
+                values=skills[i];
+                index=i;
+                count=1;
+            }
+        }
+        return index;
     }
-    return res;
-}
-
+};
 
 
 ```
@@ -120,21 +136,29 @@ string clearDigits(string s) {
 
 ```java
 // Java code
-public class ClearDigits {
-    public static String clearDigits(String s) {
-        StringBuilder res = new StringBuilder();
-        for (char ch : s.toCharArray()) {
-            if (Character.isDigit(ch)) {
-                if (res.length() > 0) {
-                    res.deleteCharAt(res.length() - 1);
-                }
+import java.util.List;
+
+class Solution {
+    public int findWinningPlayer(List<Integer> skills, int k) {
+        int count = 0;
+        int values = skills.get(0);
+        int index = 0;
+        for (int i = 1; i < skills.size(); i++) {
+            if (count == k) {
+                return index;
+            }
+            if (values > skills.get(i)) {
+                count++;
             } else {
-                res.append(ch);
+                values = skills.get(i);
+                index = i;
+                count = 1;
             }
         }
-        return res.toString();
+        return index;
     }
 }
+
 
 
 
